@@ -73,5 +73,36 @@ VALUES (1, '2024-03-05', 'Salary Payment', 5000.00, 'Income'),
        (4, '2024-03-02', 'Business Travel', 500.00, 'Expense'),
        (5, '2024-03-01', 'Loan Payment', 1000.00, 'Expense')
 
+--Update
+UPDATE Employees
+SET position = 'Senior Manager' 
+WHERE employee_id = 4
 
+--Delete
+DELETE FROM Employees
+Where employee_id = 6
+
+SELECT * FROM Employee
+
+--- Update the netsalary in payroll table 
 UPDATE PAYROLL SET NETSALARY = (BASICSALARY + OVERTIMEPAY - DEDUCTIONS)
+
+--- Select name of the employee with full name and last name 
+ SELECT CONCAT_WS(' ', first_name, last_name) AS FullName,Position
+ FROM Employee
+
+--  Retrive employees(s) who lives in same residence:
+SELECT employee_id, CONCAT(first_name, ' ',last_name) AS FullName, Address
+FROM Employee 
+WHERE Address IN (SELECT Address
+    FROM Employees  GROUP BY Address
+    HAVING COUNT(*) > 1
+)
+
+-- Retrieve the employee with the highest basic salary:
+SELECT TOP 1 e.employee_id,concat_ws(' ', e.first_name, e.last_name) AS EmpName,p.basic_salary
+FROM Employees e
+JOIN Payroll p 
+ON p.employee_id = e.employee_id
+ORDER BY p.basic_salary DESC
+
