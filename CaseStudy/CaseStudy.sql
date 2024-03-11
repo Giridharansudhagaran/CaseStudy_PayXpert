@@ -42,8 +42,6 @@ VALUES (1, '2024-02-01', '2024-02-29', 5000.00, 100.00, 200.00),
 
 select * from PayRoll
 
-UPDATE PAYROLL SET NETSALARY = (BASICSALARY + OVERTIMEPAY - DEDUCTIONS)
-
 CREATE TABLE Tax(
  TaxID int identity(1,1) primary key,
  EmployeeID int,
@@ -74,3 +72,6 @@ VALUES (1, '2024-03-05', 'Salary Payment', 5000.00, 'Income'),
        (3, '2024-03-03', 'Client Payment', 2000.00, 'Income'),
        (4, '2024-03-02', 'Business Travel', 500.00, 'Expense'),
        (5, '2024-03-01', 'Loan Payment', 1000.00, 'Expense')
+
+
+UPDATE PAYROLL SET NETSALARY = (BASICSALARY + OVERTIMEPAY - DEDUCTIONS)
